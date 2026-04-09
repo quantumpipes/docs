@@ -26,31 +26,24 @@ Most AI platforms ask you to trust them with your data. Quantum Pipes makes trus
 
 ---
 
-## The Sovereign Stack
+## Open Source Packages
 
 Quantum Pipes is a composable ecosystem of independent packages. Use one, use all.
 
-### Platform
-
-| Package | Purpose | Install |
-|---|---|---|
-| [**quantumpipes**](https://github.com/quantumpipes/core) | Intelligence engine: infinite capabilities, OODA loops, multi-provider inference cascade | `pip install quantumpipes` |
-
-### Specialist Packages
+### Audit and Accountability
 
 | Package | Purpose | Install |
 |---|---|---|
 | [**qp-capsule**](https://github.com/quantumpipes/capsule) | Audit protocol: CPS v1.0 spec, 6-section records, hash-chained, dual-signed | `pip install qp-capsule` |
-| [**qp-vault**](https://github.com/quantumpipes/vault) | Knowledge store: 4 trust tiers, hybrid search (70% vector + 30% keyword), Merkle verification | `pip install qp-vault` |
-| [**qp-conductor**](https://github.com/quantumpipes/conductor) | Orchestration: goal decomposition, 5 autonomy levels, agent swarms, adaptation engine | `pip install qp-conductor` |
-| [**qp-scout**](https://github.com/quantumpipes/scout) | Knowledge pipeline: multi-provider crawling, SAFE fact-checking, 4-tier trust lifecycle | `pip install qp-scout` |
+| [**capsule-go**](https://github.com/quantumpipes/capsule-go) | Go verification: Capsule integrity, chain linkage, Ed25519 signatures (stdlib only) | `go get github.com/quantumpipes/capsule-go` |
 | [**capsule-litellm**](https://github.com/quantumpipes/capsule-litellm) | LLM bridge: one-line audit trail for any LLM call via LiteLLM | `pip install capsule-litellm` |
 
-### Cross-Language
+### Knowledge and Orchestration
 
 | Package | Purpose | Install |
 |---|---|---|
-| [**capsule-go**](https://github.com/quantumpipes/capsule-go) | Go verification: Capsule integrity, chain linkage, Ed25519 signatures (stdlib only) | `go get github.com/quantumpipes/capsule-go` |
+| [**qp-vault**](https://github.com/quantumpipes/vault) | Knowledge store: 4 trust tiers, hybrid search (70% vector + 30% keyword), Merkle verification | `pip install qp-vault` |
+| [**qp-conductor**](https://github.com/quantumpipes/conductor) | Orchestration: goal decomposition, 5 autonomy levels, agent swarms, adaptation engine | `pip install qp-conductor` |
 
 ### Infrastructure
 
@@ -75,7 +68,7 @@ Quantum Pipes is a composable ecosystem of independent packages. Use one, use al
 └────────────────────────┬────────────────────────────────┘
                          v
 ┌─────────────────────────────────────────────────────────┐
-│  CORE agents execute: PERCEIVE > REASON > DECIDE > ACT   │
+│  Agents execute: PERCEIVE > REASON > DECIDE > ACT        │
 │  Each agent has tools, knowledge (Vault), and policies   │
 │  Every iteration checks the kill switch                  │
 └────────────────────────┬────────────────────────────────┘
@@ -87,41 +80,6 @@ Quantum Pipes is a composable ecosystem of independent packages. Use one, use al
 │  Hash-chained into immutable temporal ordering           │
 └─────────────────────────────────────────────────────────┘
 ```
-
----
-
-## Quick Start
-
-### Prerequisites
-
-- Linux or macOS
-- Docker (with Compose)
-- 16 GB+ RAM
-- GPU optional (CPU inference works, GPU is faster)
-
-### Three commands
-
-```bash
-git clone https://github.com/quantumpipes/core.git
-cd core
-make go
-```
-
-This pulls images, generates cryptographic keys, starts all services, and opens `https://qp.local`.
-
-### First steps
-
-1. **Create a Space** -- organize your work into isolated contexts
-2. **Upload documents** -- Vault processes, chunks, embeds, and trust-scores them
-3. **Ask Conductor** -- describe what you need in plain language
-
-### Deployment tiers
-
-| Tier | Users | Inference | Storage | Best for |
-|---|---|---|---|---|
-| **Solo** | 1-3 | Ollama | SQLite | Individual use, evaluation |
-| **Team** | 10-50 | vLLM | PostgreSQL | Department deployment |
-| **Enterprise** | Unlimited | NVIDIA NIMs | PostgreSQL + pgvector | Organization-wide, air-gapped |
 
 ---
 
@@ -271,16 +229,6 @@ Double-encrypted remote access to any device, from anywhere.
 
 **Conduit handles the inside (service mesh). Tunnel handles the outside (remote access).** Together they form a complete air-gapped networking layer.
 
-### Scout: Knowledge Pipeline
-
-Trust-governed ingestion from external sources.
-
-**4-tier trust lifecycle:** POTENTIAL (discovered) > CANDIDATE (crawled) > VERIFIED (fact-checked) > CANONICAL (trusted)
-
-**Dual-gate defense:** Content verification gate + fact verification gate before anything enters the knowledge store.
-
-**Multi-provider crawling** with crawl4ai integration and HTTP fetching. Feeds verified content into Vault.
-
 ### capsule-litellm: LLM Audit Bridge
 
 One line of code wraps every LLM call with a cryptographic audit trail:
@@ -305,31 +253,36 @@ Works with any provider LiteLLM supports: OpenAI, Anthropic, Ollama, vLLM, NVIDI
 
 ## Architecture
 
-### Dependency Graph
+### How Packages Compose
 
 ```
                     ┌─────────────┐
-                    │   capsule   │  <-- Foundation (zero QP deps)
+                    │   capsule   │  <-- Foundation (zero dependencies)
                     └──────┬──────┘
                            |
               ┌────────────┼────────────┐
               |            |            |
-        ┌─────v─────┐ ┌───v────┐ ┌────v──────┐
-        │   vault    │ │ scout  │ │ conductor │
-        └─────┬──────┘ └───┬────┘ └────┬──────┘
-              |            |            |
-              └────────────┼────────────┘
+        ┌─────v─────┐     |      ┌────v──────┐
+        │   vault    │     |      │ conductor │
+        └────────────┘     |      └───────────┘
                            |
                     ┌──────v──────┐
-                    │    core     │  <-- Orchestrates all packages
+                    │capsule-litellm│
                     └─────────────┘
 
-  Independent:
-  capsule-go (Go verifier)    conduit + tunnel (infrastructure pair)
-  capsule-litellm (LLM bridge)
+  Infrastructure (independent, pairs together):
+  ┌──────────────┐  ┌──────────────┐
+  │   conduit    │  │    tunnel    │
+  │  (inside)    │  │  (outside)   │
+  └──────────────┘  └──────────────┘
+
+  Cross-language:
+  ┌──────────────┐
+  │  capsule-go  │  (Go verifier, stdlib only)
+  └──────────────┘
 ```
 
-Every package optionally depends on Capsule for audit trails. Core depends on all specialist packages. Each package works independently.
+Every package optionally depends on Capsule for audit trails. Each package works independently.
 
 ### Cryptographic Standards
 
@@ -348,7 +301,7 @@ Every package optionally depends on Capsule for audit trails. Core depends on al
 
 Every package is designed around three guarantees:
 
-1. **Verified** -- claims are checked against sources (Vault integrity checks, Scout fact-checking, Conductor verification)
+1. **Verified** -- claims are checked against sources (Vault integrity checks, Conductor verification)
 2. **Recorded** -- every action creates a cryptographically sealed Capsule (`forall action: exists capsule`)
 3. **Controllable** -- any agent can be stopped instantly (Kill Switch: SOFT for graceful shutdown, HARD for immediate termination, cannot be disabled)
 
@@ -358,7 +311,7 @@ Every package is designed around three guarantees:
 
 Quantum Pipes maps to 11 regulatory frameworks:
 
-| Framework | Scope | Key Capsule Mapping |
+| Framework | Scope | Key Mapping |
 |---|---|---|
 | [SOC 2](compliance/soc2.md) | Trust Services Criteria | Capsule audit trail satisfies CC6, CC7, CC8 |
 | [HIPAA](compliance/hipaa.md) | Healthcare data protection | Vault data classification + Capsule access logging |
@@ -384,7 +337,6 @@ Pick a path based on what you need:
 - [I want governed document intelligence](getting-started/document-intelligence.md) -- start with qp-vault
 - [I want AI orchestration](getting-started/orchestration.md) -- start with qp-conductor
 - [I want air-gapped networking](getting-started/networking.md) -- start with conduit + tunnel
-- [I want the complete platform](getting-started/full-platform.md) -- start with quantumpipes (Core)
 
 ### [Architecture](architecture/)
 
@@ -404,7 +356,7 @@ Regulatory framework mappings: how Quantum Pipes satisfies SOC 2, HIPAA, GDPR, N
 
 ### [Reference](reference/)
 
-API reference, CLI reference, and configuration reference for the platform.
+API reference, CLI reference, and configuration reference.
 
 ### [Security](security/)
 

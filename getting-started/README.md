@@ -14,6 +14,5 @@ Quantum Pipes is a composable ecosystem. You don't need everything. Pick the pat
 | Governed document intelligence | [Document Intelligence](document-intelligence.md) | 15 minutes |
 | AI agent orchestration | [Orchestration](orchestration.md) | 15 minutes |
 | Air-gapped networking | [Networking](networking.md) | 30 minutes |
-| The complete platform | [Full Platform](full-platform.md) | 1 hour |
 
 Each guide is self-contained. No prior knowledge of other packages required.

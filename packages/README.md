@@ -11,7 +11,6 @@ order: 4
 - [qp-capsule](capsule.md) -- Tamper-evident audit records (protocol + reference implementation)
 - [qp-vault](vault.md) -- Governed knowledge store with trust tiers and hybrid search
 - [qp-conductor](conductor.md) -- Cognitive orchestration engine for autonomous operations
-- [qp-scout](scout.md) -- Trust-governed knowledge pipeline
 - [capsule-litellm](capsule-litellm.md) -- One-line Capsule audit trail for any LLM call
 
 ## Go Packages
