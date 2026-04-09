@@ -2,7 +2,7 @@
 
 **Intelligence that belongs to you.**
 
-Quantum Pipes is an offline-first AI platform with cryptographic accountability. 42 capabilities. 14 specialist agents. One sovereign platform. Runs on your hardware, proves what it did, and never phones home.
+Quantum Pipes is an offline-first AI platform with cryptographic accountability. 111 seed capabilities across 24 domains, with infinite synthesis for anything not covered. Runs on your hardware, proves what it did, and never phones home.
 
 100% Local. Zero Cloud. Air-Gap Ready.
 
@@ -16,7 +16,7 @@ Quantum Pipes is an offline-first AI platform with cryptographic accountability.
 
 Most AI platforms ask you to trust them with your data. Quantum Pipes makes trust unnecessary by making everything provable.
 
-**42 capabilities, not one chatbot.** Research, legal analysis, code generation, security audit, compliance checks, voice transcription, and 36 more. Each governed by policy, not just prompts.
+**111 seed capabilities, infinite synthesis.** Research, legal analysis, code generation, security audit, compliance checks, voice transcription, and 100+ more. When no seed matches, a 312-operator cognitive substrate synthesizes novel capabilities on demand. Each governed by policy, not just prompts.
 
 **Honest AI.** Admits uncertainty. Confidence scores on every claim. Reasoning recorded before execution, not after.
 
@@ -34,7 +34,7 @@ Quantum Pipes is a composable ecosystem of independent packages. Use one, use al
 
 | Package | Purpose | Install |
 |---|---|---|
-| [**quantumpipes**](https://github.com/quantumpipes/core) | Intelligence engine: 42 capabilities, 14 specialists, OODA loops, inference cascade | `pip install quantumpipes` |
+| [**quantumpipes**](https://github.com/quantumpipes/core) | Intelligence engine: 111 seed capabilities, infinite synthesis, OODA loops, inference cascade | `pip install quantumpipes` |
 
 ### Specialist Packages
 
@@ -69,9 +69,9 @@ Quantum Pipes is a composable ecosystem of independent packages. Use one, use al
 └────────────────────────┬────────────────────────────────┘
                          v
 ┌─────────────────────────────────────────────────────────┐
-│  CONDUCTOR decomposes it into capability-ordered tasks    │
-│  Assigns autonomy level (L0-L4) based on risk            │
-│  Dispatches specialist agents                            │
+│  CONDUCTOR matches against 111 seed capabilities          │
+│  Synthesizes novel ones from 312 operators if needed     │
+│  Assigns autonomy level (L0-L4), dispatches agents       │
 └────────────────────────┬────────────────────────────────┘
                          v
 ┌─────────────────────────────────────────────────────────┐
@@ -198,7 +198,13 @@ Content-addressed storage with trust tiers that affect search ranking.
 
 ### Conductor: Cognitive Orchestration
 
-Decomposes natural language goals into capability-ordered execution plans.
+Decomposes natural language goals into capability-ordered execution plans. 111 seed capabilities serve as starting points; a 312-operator cognitive substrate synthesizes novel capabilities for anything the seeds don't cover. The system's capability surface is unbounded.
+
+**The seed + synthesis model:**
+
+Goals are analyzed against 111 registered seed capabilities across 24 domains. When a goal requires a capability that doesn't exist, the Capability Synthesizer composes one from 312 cognitive operators (665 edges) in the substrate. Synthesized capabilities are registered, used, scored with Joy, and improved through feedback. Over time, the system grows more capable without manual capability authoring.
+
+New seed capabilities can also be added by dropping a YAML file in the registry directory.
 
 **5 autonomy levels:**
 
@@ -210,26 +216,33 @@ Decomposes natural language goals into capability-ordered execution plans.
 | L3 | CHECKPOINT_END | Final output reviewed. | Default. Most tasks. |
 | L4 | FULL | Audit trail only. | Low-risk, high-confidence, established track record |
 
-**42 capabilities across 9 domains:**
+**111 seed capabilities across 24 domains:**
 
-| Domain | Count | Examples |
-|---|---|---|
-| Analysis | 10 | Financial, market, risk, pattern detection, legal, accounting |
-| Planning | 4 | Strategic, project, resource, task decomposition |
-| Creation | 5 | Code generation, tests, content, documentation, formal documents |
-| Investigation | 5 | Research, debugging, root cause, vision, performance analysis |
-| Validation | 3 | Code review, compliance check, evidence collection |
-| Communication | 2 | Stakeholder updates, progress reporting |
-| Execution | 2 | Deployment, shell execution |
-| Audio | 4 | Transcription, understanding, synthesis, diarization |
-| Sysadmin | 5 | Health check, diagnosis, remediation, validation, learning |
+| Domain | Seeds | Domain | Seeds |
+|---|---|---|---|
+| Analysis | 10 | Linguistics | 4 |
+| Audio | 4 | Mathematics | 5 |
+| Communication | 2 | Medicine | 5 |
+| Creation | 5 | Operations | 4 |
+| Creative | 4 | Philosophy | 4 |
+| Cybersecurity | 5 | Planning | 4 |
+| Data | 5 | Science | 5 |
+| Education | 4 | Social Science | 5 |
+| Engineering | 5 | Strategy | 5 |
+| Environmental | 4 | Sysadmin | 5 |
+| Execution | 2 | Validation | 5 |
+| Governance | 5 | Investigation | 5 |
 
-**7 subsystems:**
+**+ Infinite synthesis** via 312 cognitive operators across the same 24 domains. When no seed matches a goal, the Capability Synthesizer composes a novel capability from operators, caches it, and improves it through Joy feedback.
+
+**8 subsystems:**
 
 | Subsystem | Function |
 |---|---|
 | **Goal Analyzer** | Natural language to capability requirements with intent classification |
 | **Capability Composer** | Requirements to dependency-ordered execution plan via topological sort |
+| **Capability Synthesizer** | Novel capabilities from 312 cognitive operators when no seed matches |
+| **Cognitive Substrate** | 312 operators, 665 edges across 24 domains. Queryable reasoning graph. |
 | **Autonomy Calculator** | Risk and confidence analysis to determine human oversight level |
 | **Orchestrator** | Multi-agent dispatch with parallel execution and Capsule-sealed decisions |
 | **Checkpoint Manager** | Human approval gates with async wait patterns for high-risk operations |
